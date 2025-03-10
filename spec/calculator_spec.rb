@@ -45,5 +45,13 @@ RSpec.describe Calculator do
     it 'handles a custom delimiter and ignores newlines correctly' do
       expect(Calculator.add("//;\n1;2;3\n4")).to eq(10)
     end
+
+    it 'throws an exception for negative numbers with the correct message' do
+      expect { Calculator.add('1,-2,3') }.to raise_error('negative numbers not allowed -2')
+    end
+
+    it 'throws an exception for multiple negative numbers with the correct message' do
+      expect { Calculator.add("//;\n1;-2;3;-4") }.to raise_error('negative numbers not allowed -2, -4')
+    end
   end
 end
