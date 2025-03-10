@@ -33,5 +33,17 @@ RSpec.describe Calculator do
     it 'returns 0 for a string with only delimiters' do
       expect(Calculator.add("\n,\n")).to eq(0)
     end
+
+    it 'returns the sum of numbers with a custom delimiter' do
+      expect(Calculator.add("//;\n1;2")).to eq(3)
+    end
+
+    it 'handles multiple delimiters with a custom delimiter' do
+      expect(Calculator.add("//|\n1|2|3")).to eq(6)
+    end
+
+    it 'handles a custom delimiter and ignores newlines correctly' do
+      expect(Calculator.add("//;\n1;2;3\n4")).to eq(10)
+    end
   end
 end
